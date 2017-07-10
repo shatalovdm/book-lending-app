@@ -14,8 +14,7 @@ export default class Search extends Component {
 	    this.handleChange = this.handleChange.bind(this);
   	}
 
-	handleChange(event) {
-		const value = event.target.value
+	handleChange(value) {
 		this.setState({ value })
 		if (value.length === 0) {
 			this.setState({ books: [] })
@@ -36,7 +35,7 @@ export default class Search extends Component {
 				<div className="search-books-bar">
 					<Link className="close-search" to="/">Close</Link>
 					<div className="search-books-input-wrapper">
-						<input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Search by title or author"/>
+						<input type="text" value={this.state.value} onChange={(event) => this.handleChange(event.target.value)} placeholder="Search by title or author"/>
 					</div>
 				</div>
 				<div className="search-books-results">

@@ -10,6 +10,17 @@ class BooksApp extends Component {
     books: []
   }
 
+  updateBookShelf = (book, shelf) => {
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        book.shelf = shelf
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([ book ])
+        }))
+      })
+    }
+  }
+
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       const selectedBooks = books.filter(book => book.shelf !== 'none')
@@ -23,11 +34,11 @@ class BooksApp extends Component {
     return (
       <div className="app">
           <Route path="/search" render={({history}) => (
-            <Search onShelfChange={() => this.componentDidMount()}/>
+            <Search onShelfChange={(book, shelf) => this.updateBookShelf(book, shelf)}/>
           )}/>
           <Route exact path="/" render={() => (
             <ListBooks 
-              onShelfChange={() => this.componentDidMount()}
+              onShelfChange={(book, shelf) => this.updateBookShelf(book, shelf)}
               books={this.state.books}
             />
           )}/>
