@@ -1,21 +1,33 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Read from './read'
-import WantToRead from './want-to-read'
-import CurrentlyReading from './currently-reading'
+import Shelf from './shelf'
+
+const shelves = new Map() 
+
+shelves.set('Currently Reading', 'currentlyReading')
+shelves.set('Want to Read', 'wantToRead')
+shelves.set('Read', 'read')
+
+console.log(shelves.keys())
 
 export default class ListBooks extends Component {
-	constructor(props) {
-	    super(props);
-	    this.state = {
-	    	currentlyReading: [],
-	    	wantToRead: [],
-	    	read: []
-	    };
-
-  	}
 
 	render() {
+		const shelfComponents = []
+		console.log(this.props.books)
+		for (const shelf of shelves.keys()) {
+			shelfComponents.push (
+	      		<div className="bookshelf" key={ shelf }>
+	      			<Shelf 
+	      				shelves={ shelves }
+	      				shelfName={ shelf }
+	      				books={this.props.books}
+	      				onShelfChange={this.props.onShelfChange}
+	      			/>
+	      		</div>
+			)
+  		}
+
 		return (
 		<div className="list-books">
             <div className="list-books-title">
@@ -23,9 +35,7 @@ export default class ListBooks extends Component {
             </div>
             <div className="list-books-content">
               <div>
-              	<CurrentlyReading />
-              	<WantToRead />
-              	<Read />
+         		{shelfComponents}
               </div>
             </div>
             <div className="open-search">

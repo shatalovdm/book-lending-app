@@ -18,20 +18,19 @@ export default class Search extends Component {
 		const value = event.target.value
 		this.setState({ value })
 		if (value.length === 0) {
-			this.setState({
-				books: []
-			});
+			this.setState({ books: [] })
 		} else {
-			BooksAPI.search(event.target.value, 20).then((books) => {
-				this.setState({
-					books: books 
-				});
+			BooksAPI.search(value, 50).then((books) => {
+				if (books.error) {
+					this.setState({ books: [] })
+				} else {
+					this.setState({ books })
+				}
 			})
 		}
 	}
 
 	render() {
-		const books = this.state.books
 		return (
 			<div className="search-books">
 				<div className="search-books-bar">
@@ -41,11 +40,14 @@ export default class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-						{books.length !== 0 && (
+						{this.state.books.length !== 0 && (
 							<ol className="books-grid">
 								{this.state.books.map(book => (
 									<li key={ book.id }>
-										<Book book={book} />
+										<Book 
+										book={book}
+										onShelfChange={this.props.onShelfChange}
+										/>
 									</li>
 								))}
 							</ol>
