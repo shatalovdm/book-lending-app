@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
-import Book from './book'
+import Book from './Book'
 
 export default class Search extends Component {
 	constructor(props) {
@@ -23,7 +23,11 @@ export default class Search extends Component {
 				if (books.error) {
 					this.setState({ books: [] })
 				} else {
-					this.setState({ books })
+					const bookIdsOnShelf = this.props.books.map(book => book.id)
+					const bookIdsSearch = books.map(book => book.id)
+					const booksNotOnShelf = books.filter(book => !bookIdsOnShelf.includes(book.id))
+					const booksOnShelf = this.props.books.filter(book => bookIdsSearch.includes(book.id))
+					this.setState({ books: [...booksNotOnShelf, ...booksOnShelf] })
 				}
 			})
 		}
@@ -44,8 +48,8 @@ export default class Search extends Component {
 								{this.state.books.map(book => (
 									<li key={ book.id }>
 										<Book 
-										book={book}
-										onShelfChange={this.props.onShelfChange}
+											book={book}
+											onShelfChange={this.props.onShelfChange}
 										/>
 									</li>
 								))}
