@@ -23,7 +23,7 @@ const ListBooks = ({onShelfChange, books}) => {
       			/>
       		</div>
 		)
-		}
+	}
 
 	return (
 	<div className="list-books">

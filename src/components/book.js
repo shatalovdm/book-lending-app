@@ -5,7 +5,7 @@ class Book extends Component {
 		shelf: this.props.book.shelf
 	}
 
-	changeShelf = (book, shelf) => {
+	changeShelf(book, shelf) {
 		this.setState({ shelf }) 
 		this.props.onShelfChange(book, shelf) 
 	}

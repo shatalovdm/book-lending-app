@@ -20,7 +20,7 @@ export default class App extends Component {
     })
   }
 
-  updateBookShelf = (book, shelf) => {
+  updateBookShelf(book, shelf) {
     if (book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf
@@ -30,10 +30,6 @@ export default class App extends Component {
       })
     }
   }
-
-  // searchBooks = (value) => {
-  //   BooksAPI.search(value, 50).then 
-  // }
 
   render() {
     return (
