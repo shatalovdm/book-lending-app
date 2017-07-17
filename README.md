@@ -9,7 +9,7 @@ This is an application that lets you to track your reading.
 
 This app is powered by **React** framework and **React Router** package.
 
-The demo of this application is available at this [link](http://dshatalov.com/book-lending-app/build).
+The demo of this application is available at this [link](https://myreads-react-app.herokuapp.com/).
 
 ## Getting started
 
