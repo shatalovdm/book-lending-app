@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "lodash": "^4.17.4",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-addons-create-fragment": "^15.6.0",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1"
   },

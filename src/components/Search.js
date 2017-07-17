@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
 
 export default class Search extends Component {
 	constructor(props) {
-	    super(props);
+	    super(props)
 	    this.state = {
 	    	value: '',
 	    	books: []
 	    };
 
-	    this.handleChange = this.handleChange.bind(this);
+	    this.handleChange = this.handleChange.bind(this)
   	}
 
 	handleChange(value) {
