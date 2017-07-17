@@ -3,10 +3,13 @@
 This is an application that lets you to track your reading. 
 
 - Select books you are currently reading, read in the past, or want to read in the future. 
-- Move them between categories
-- Add new books to the categories
+- Move them between the categories
+- Add new books to the selected category
+- Look up book description 
 
-This app is powered by React framework and React Router package.
+This app is powered by **React framework** and **React Router** package.
+
+The demo of this application is available at this (link)[http://dshatalov.com/book-lending-app/build].
 
 ## Getting started
 
